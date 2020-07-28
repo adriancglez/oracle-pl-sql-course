@@ -49,4 +49,4 @@ Crear un nuevo usuario llamado 'HR' con su contraseña 'hr', que nos permitirá 
 
 Al usuario 'HR' le asignamos el privilegio de iniciar sesión:
 
-> grant create session to THE_USER;
+> grant create session to HR;
