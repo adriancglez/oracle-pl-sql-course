@@ -19,8 +19,8 @@
 1. Java Development Kit (JDK)
     > https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
 
-2. Oracle XE
-    > https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c
+2. Oracle 18c XE
+    > https://www.oracle.com/database/technologies/xe-downloads.html
 
 3. SQL Developer
     > https://www.oracle.com/tools/downloads/sqldev-v192-downloads.html

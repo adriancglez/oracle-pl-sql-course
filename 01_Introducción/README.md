@@ -31,22 +31,19 @@ PL/SQL es un bloque donde se construirán y mezclarán los comandos PL/SQL.
 
 Para empezar a trabajar con Oracle, es necesario realizar algunas configuraciones.
 
-Iniciar sesión desde la consola SQL*PLUS como administrador:
+Iniciar sessión en SQL Developer con la configuración:
 
-> sqlplus / AS SYSDBA
+~~~
+nombre: SYSTEM
+user: system
+password: password
+nombre del servicio: xepdb1
+~~~
 
-ó
+Debemos habilitar un usuario que Oracle XE nos proporciona para realizar nuestras pruebas, este usuario se llama `HR`, para ello, en el editor de código `sql`, ejecutar los siguientes comandos:
 
-> CONN / AS SYSDBA
+> ALTER USER HR ACCOUNT UNLOCK;
 
-Para permitir la ejecución de comandos SQL:
+> ALTER USER HR IDENTIFIED BY hr;
 
-> alter session set "_ORACLE_SCRIPT"=true;
-
-Crear un nuevo usuario llamado 'HR' con su contraseña 'hr', que nos permitirá realizar las prácticas:
-
->  create user HR identified by hr;
-
-Al usuario 'HR' le asignamos el privilegio de iniciar sesión:
-
-> grant create session to HR;
+Iniciar una nueva sesión en SQL Developer con el usuario habilitado: `HR`.
