@@ -233,3 +233,143 @@ Los operadores usados en PL/SQL son similares a los de cualquier lenguaje de pro
 **  EXPONENTE
 ||  CONCATENACIÓN
 ~~~
+
+## COMENTARIOS
+
+Existen dos posibilidades de realizar comentarios en nuestro código PL/SQL. Para realizar un comentario de una sola línea usamos dos guiones `--`.
+
+    -- Esto es un comentario
+    DECLARE
+        x   NUMBER; -- Esto es una variable numérica.
+        ...
+
+Otra forma de realizar un comentario es con `/*  */`. Este es un comentario de múltiples líneas
+
+    DECLARE
+        x   NUMBER;
+        /*
+            En estas líneas
+            todo es comentario
+        */
+    BEGIN
+        x := 10;
+    END;
+
+## PRÁCTICA ADICIONAL CON VARIABLES, CONSTANTES Y %TYPE
+
+Quieremos calcular el impuesto de un producto, el impuesto es del `21%`, lo ponemos en una constante, creamos una variable de tipo `number(5,2)` para poner el precio del producto y creamos otra variable para el resultado. Le decimos que es del mismo tipo `(TYPE)` que la anterior. Hacemos el cálculo y visualizamos el resultado.
+
+## BLOQUES ANIDADOS
+
+Los bloques anidados nos permiten agrupar, ordenar lo que son trozos de bloque. Literalmente son bloques dentro de otros bloques.
+
+    -- Primer bloque
+    BEGIN
+        -- Segundo bloque
+        DECLARE
+            
+        BEGIN
+            
+        END;
+    END;
+
+## AMBITO DE LAS VARIABLES EN BLOQUES ANIDADOS
+
+Dentro de este contexto, existen dos tipos de variables: `globales` y `locales`.
+
+Una variable se considera global cuando es declarada en el bloque mas externo, mientras que una variable es considerada local cuando es declarada en el bloque más interno.
+
+    -- Primer bloque
+    DECLARE
+        x NUMBER := 20; -- Variable GLOBAL
+    BEGIN
+        
+        -- Segundo bloque
+        DECLARE
+            x   NUMBER := 10; -- Variable LOCAL
+            y   NUMBER := 30; -- Variable LOCAL
+        BEGIN
+            ...
+        END;
+
+        ...
+    END;
+
+Cualquier variable del bloque padre puede ser accedida por el bloque hijo, pero no al revés.
+
+## PRÁCTICA ÁMBITO DE VARIABLES Y BLOQUES ANIDADOS
+
+Realizar las siguientes prácticas.
+
+1. Indicar qué valores visualiza `x` en los 3 casos de este ejemplo
+> 10, 20, 10
+
+~~~
+SET SERVEROUTPUT ON
+
+DECLARE
+    x NUMBER := 10;
+BEGIN
+    dbms_output.put_line(x);
+    DECLARE
+        x NUMBER := 20;
+    BEGIN
+        dbms_output.put_line(x);
+    END;
+    dbms_output.put_line(x);
+END;
+~~~
+
+2. Es este bloque correcto?, si no es así, ¿por qué falla?
+> Primero porque no está declarado el paquete `SET SERVEROUTPUT ON`, y segundo porque la variable `x` está solo en el bloque anidado y por tanto no puede ser vista desde el bloque principal
+
+~~~
+BEGIN
+    dbms_output.put_line(x);
+    DECLARE
+        x NUMBER := 20;
+    BEGIN
+        dbms_output.put_line(x);
+    END;
+    dbms_output.put_line(x);
+END;
+~~~
+
+3. ¿Es este bloque correcto?, Si es así, ¿qué valores visualiza `X`?
+>Si es correcto, `X` visualiza: 10, 10, 10
+
+~~~
+SET SERVEROUTPUT ON
+
+DECLARE
+    x NUMBER := 10;
+BEGIN
+    dbms_output.put_line(x);
+    BEGIN
+        dbms_output.put_line(x);
+    END;
+    dbms_output.put_line(x);
+END;
+~~~
+
+## FUNCIONES
+
+PL/SQL utiliza las mismas funciones que SQL, esto se refiere a que se llaman igual.
+
+Ejemplo de funciones de PL/SQL:
+
+    substr(x, 1, 3) -- La función substr devuelve un trozo de una cadena entre rangos definidos.
+
+    upper(x); -- La función upper convierte a mayúsculas una cadena
+
+    sysdate; -- La función sysdate devuelve la fecha actual del sistema
+
+## PRÁCTICAS CON FUNCIONES
+
+Realiza las siguientes prácticas:
+
+1. Iniciales.
+    * Crea un bloque PL/SQL con tres variables `varchar2`: nombre, apellido1 y apellido2.
+    * Debes visualizar las iniciales por puntos. Además siempre en mayúscula.
+
+2. Averiguar el nombre del día que naciste.
