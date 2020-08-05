@@ -154,3 +154,85 @@ Para estructurar bucles anidados (bucles dentro de otro bucles) en `PL/SQL` se d
         END LOOP mySecondLoop;
 
     END LOOP myFirstLoop;
+
+#### CONTINUE
+
+La sentencia `continue` dentro de un bucle lo que hace es saltar de nuevo a la primera línea del bucle, es decir, no continúa con las siguientes líneas de código.
+
+La forma que recomienda Oracle para el uso de `continue`.
+
+    LOOP
+        ...
+        CONTINUE WHEN x < 3;
+        ...
+    END LOOP;
+
+### BUCLE `for`
+
+El `for` de `PL/SQL` es similar al de otros lenguajes de programación, con algunas diferencias.
+
+    SET SERVEROUTPUT ON;
+
+    DECLARE
+        x NUMBER := 0;
+    BEGIN
+        FOR i IN range LOOP
+            ...
+        END LOOP;
+    END;
+
+donde `range` es un rango de números, separados por dos puntos `..`
+
+### BUCLE `while`
+
+Es similar al de cualquier lenguaje de programación, solo con algunas diferencias.
+
+    WHILE condición LOOP
+        ...
+    END LOOP;
+
+### SENTENCIA `goto`
+
+Esta sentencia nos permite ir a otro punto del código o a otra parte del bloque.
+
+Para usar el `goto` se acompaña de una etiqueta, dicha etiqueta puede estar declarada en cualquier parte del código y se encierra en `<<  >>`.
+
+    GOTO tag;
+
+### PRÁCTICAS CON BUCLES
+
+Realiza la siguientes prácticas.
+
+#### PRÁCTICA 1
+
+Vamos a crear la tabla de multiplicar del 1 al 10, con los tres tipos de bucles: LOOP, WHILE y FOR.
+
+#### PRÁCTICA 2
+
+Crear una variable llamada TEXTO de tipo VARCHAR2(100).
+
+Poner alguna frase
+
+Mediante un bucle, escribir la frase al revés, Usamos el bucle WHILE
+
+#### PRÁCTICA 3
+
+Usando la práctica anterior, si en el texto aparece el carácter "x" debe salir del bucle. Es igual en mayúsculas o minúsculas.
+
+Debemos usar la cláusula EXIT.
+
+#### PRÁCTICA 4
+
+Debemos crear una variable llamada NOMBRE
+
+Debemos pintar tantos asteriscos como letras tenga el nombre. Usamos un bucle FOR
+
+Por ejemplo  Alberto --> *******
+
+#### PRÁCTICA 5
+
+Creamos dos variables numéricas, "inicio y fin"
+
+Las inicializamos con algún valor:
+
+Debemos sacar los números que sean múltiplos de 4 de ese rango
