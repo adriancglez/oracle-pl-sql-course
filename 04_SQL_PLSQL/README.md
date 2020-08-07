@@ -92,4 +92,71 @@ Crear una variable de tipo DEPARTMENT_ID y ponerla algún valor, por ejemplo 10.
 
 ### PRÁCTICA 4
 
-Mediante dos consultas recuperar el salario máximo y el salario mínimo de la empresa e indicar su diferencia
+Mediante dos consultas recuperar el salario máximo y el salario mínimo de la empresa e indicar su diferencia.
+
+## SENTENCIA `INSERT`
+
+La sentencia `insert` nos sirve para insertar datos en una tabla de la Base de Datos, para Oracle es el mismo procedimiento, pero en `PL/SQL` se nos da la facultad de que los datos a insertar sean variables, es decir, podemos combinar código `SQL` en `PL/SQL`.
+
+    DECLARE
+        my_var   my_table.my_field%TYPE;
+    BEGIN
+        my_var := 10;
+        INSERT INTO my_table (
+            my_field,
+        ) VALUES (
+            my_var,
+        );
+        commit;
+    END;
+
+En `PL/SQL` debemos usar `COMMIT` y `ROLLBACK` de la misma forma que lo hacemos en `SQL`. Por tanto, para validar definitivamente un cambio debemos usar `COMMIT`.
+
+## SENTENCIA `UPDATE`
+
+La sentencia `update` nos sirve para actualizar registros de una tabla de la Base de Datos, en Oracle funciona exactamente igual, pero con la ventaja que, a modo de ejemplo, podemos usar variables para actulizar valores de campos.
+
+
+    DECLARE
+        my_var my_table.my_field_1%TYPE;
+    BEGIN
+        my_var := 10;
+        UPDATE my_table
+        SET
+            my_field_2 = 'CCCCC'
+        WHERE
+            my_field_1 = my_var;
+    END;
+
+## SENTENCIA `DELETE`
+
+Con la sentencia `delete` podemos eliminar registros de una tabla, pero, `PL/SQL` nos permite combinar código de programación para condicionar mejor las eliminaciones que vayamos a efectuar.
+
+    DECLARE
+        my_var my_table.my_field%TYPE;
+    BEGIN
+        my_var := 47;
+        DELETE FROM my_table
+        WHERE
+            my_table.my_field = my_var;
+    END;
+
+## PRÁCTCIAS CON `INSERT`, `UPDATE` Y `DELETE`
+
+### PRÁCTICA 1
+
+Crear un bloque que inserte un nuevo departamento en la tabla DEPARTMENTS. Para saber el DEPARTMENT_ID que debemos asignar al nuevo departamento primero debemos averiguar el valor mayor que hay en la tabla DEPARTMENTS y sumarle uno para la nueva clave.
+
+* Location_id debe ser 1000
+* Manager_id debe ser 100
+* Department_name debe ser "INFORMATICA"
+
+**NOTA**: en `PL/SQL` debemos usar `COMMIT` y `ROLLBACK` de la misma forma que lo hacemos en `SQL`. Por tanto, para validar definitivamente un cambio debemos usar `COMMIT`.
+
+### PRÁCTICA 2
+
+Crear un bloque `PL/SQL` que modifique la `LOCATION_ID` del nuevo departamento a 1700. En este caso usemos el `COMMIT` dentro del bloque `PL/SQL`.
+
+### PRÁCTICA 3
+
+Por último hacer otro bloque `PL/SQL` que elimine ese departamento nuevo.
