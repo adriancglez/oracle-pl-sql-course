@@ -85,3 +85,18 @@ END;
 
 /* El error `-00001` es clave primaria duplicada. Aunque ya existe una predefinida (DUP_VAL_ON_INDEX) vamos a crear una excepción no -predefinida que haga lo mismo. 
 * Vamos a usar la tabla REGIONS para hacerlo más fácil o Usamos PRAGMA EXCEPTION_INIT y creamos una excepción denominada "duplicado". Cuando se genere ese error debemos pintar "Clave duplicada, intente otra". o Insertamos una fila en la tabla REGIONS que esté duplicada y vemos que se controla el error. */
+SET SERVEROUTPUT ON;
+
+DECLARE
+    duplicado EXCEPTION;
+    PRAGMA exception_init ( duplicado, -00001 );
+BEGIN
+    INSERT INTO regions VALUES (
+        1,
+        'Otra'
+    );
+
+EXCEPTION
+    WHEN duplicado THEN
+        dbms_output.put_line('Clave duplicada, intente otra');
+END;
