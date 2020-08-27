@@ -91,4 +91,18 @@ Para crear excepciones personalizadas, debemos hacer uso de la palabra `RAISE` s
 Crear una excepción personalizada denominada `CONTROL_REGIONES`
 * Debe dispararse cuando al insertar o modificar una región queramos poner una clave superior a 200. Por ejemplo, usando una variable con ese valor.
 * En ese caso debe generar un texto indicando algo así como "Código no permitido. Debe ser inferior a 200".
-* Recordemos que las excepciones personalizadas deben dispararse de forma manual con el `RAISE`
+* Recordemos que las excepciones personalizadas deben dispararse de forma manual con el `RAISE`.
+
+### ÁMBITO DE LAS EXCEPCIONES
+
+Es el alcance que puede tener una excepción personalizada dentro de un determinado bloque `PL/SQL`. Es el mismo concepto de alcance que las variables.
+
+### COMANDO `RAISE_APPLICATION_ERROR`
+
+Es una función que nos permite devolver un error personalizado y cortar el programada.
+
+### PRÁCTICA `RAISE_APPLICATION_ERROR`
+
+Modificar la practica anterior para disparar un error con RAISE_APPLICATION en vez de con PUT_LINE. 
+
+Esto permite que la aplicación pueda capturar y gestionar el error que devuelve el PL/SQL.
